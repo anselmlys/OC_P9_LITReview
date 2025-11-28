@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h2>Inscrivez-vous maintenant</h2>
+    <a href="{% url 'signup' %}">S'inscrire</a>
+    <h2>Connectez-vous</h2>
     <p>{{ message }}</p>
     <form method="post">
         {{ form.as_p }}
