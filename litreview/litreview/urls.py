@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 import authentication.views
+import flux.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', authentication.views.login_page, name='login'),
     path('signup/', authentication.views.signup_page, name='signup'),
+    path('home/', flux.views.home, name='home'),
+    path('logout/', authentication.views.logout_user, name='logout'),
 ]
