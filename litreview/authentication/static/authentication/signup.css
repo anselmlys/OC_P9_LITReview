@@ -1,0 +1,28 @@
+.signup-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.signup-page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-page input {
+    margin-bottom: 15px;
+    margin-top: 0;
+    width: 450px;
+    height: 30px;
+    text-align: center;
+    align-self: center;
+}
+
+.signup-page .return-signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 0.7em;
+    margin-top: 1em;
+}

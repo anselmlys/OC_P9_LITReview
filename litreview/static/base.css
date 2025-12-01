@@ -28,16 +28,19 @@ h2 {
 }
 
 .default-button {
+    box-sizing: border-box;
     background-color: #CCC2B8;
     border: 1px solid #A18B7D;
     border-radius: 0.5em;
-    display: block;
     width: 150px;
     height: 40px;
-    align-content: center;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
     font-size: medium;
+    padding: 0;
+    line-height: 1;
 }
 
 .default-button:hover {

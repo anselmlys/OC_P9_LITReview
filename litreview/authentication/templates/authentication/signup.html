@@ -1,9 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'authentication/signup.css' %}">
+{% endblock css %}
+
 {% block content %}
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit">S'inscrire</button>
-    </form>
-    <a href="{% url 'login' %}">Retourner</a>
+    <div class="signup-page">
+        <h2>Inscrivez-vous</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.username }}
+            {% for error in form.username.errors %}
+                <p class="error-message">{{ error }}</p>
+            {% endfor %}
+
+            {{ form.password1 }}
+            {% for error in form.password1.errors %}
+                <p class="error-message">{{ error }}</p>
+            {% endfor %}
+
+            {{ form.password2 }}
+            {% for error in form.password2.errors %}
+                <p class="error-message">{{ error }}</p>
+            {% endfor %}
+
+            <div class="return-signup">
+                <a class="default-button" href="{% url 'login' %}">Retourner</a>
+                <button class="default-button" type="submit">S'inscrire</button>
+            </div>
+        </form>
+    </div>    
 {% endblock content %}
