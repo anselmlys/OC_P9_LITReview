@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'flux/create_ticket.css' %}">
+{% endblock css %}
+
 {% block content %}
-    <h2>Créer un ticket</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.title }}
-        {{ form.description }}
-        {{ form.image }}
-        <button type="submit">Envoyer</button>
-    </form>
+    <div class="create-ticket">
+        <h2>Créer un ticket</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-input">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+            <div class="form-input">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+            <div class="form-input">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+            <button class="default-button" type="submit">Envoyer</button>
+        </form>
+    </div>
 {% endblock content %}
