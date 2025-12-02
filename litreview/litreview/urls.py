@@ -28,6 +28,7 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('home/', flux.views.home, name='home'),
     path('logout/', authentication.views.logout_user, name='logout'),
+    path('ticket/create/', flux.views.create_ticket, name='create_ticket'),
 ]
 
 if settings.DEBUG:
