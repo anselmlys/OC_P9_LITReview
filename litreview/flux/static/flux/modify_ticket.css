@@ -1,0 +1,12 @@
+.form-input img {
+    max-height: 220px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    align-self: flex-start;
+}
+
+.img-input-details label {
+    font-weight: 400;
+    font-size: 1em;
+}

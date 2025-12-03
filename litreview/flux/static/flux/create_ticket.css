@@ -1,35 +1,39 @@
-.create-ticket {
+.ticket-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.create-ticket form {
+.ticket-section form {
     display: flex;
     flex-direction: column;
     width: 75%;
     gap: 1.5em;
 }
 
-.create-ticket .form-input {
+.ticket-section .form-input {
     display: flex;
     flex-direction: column;
     gap: 0.5em
 }
 
-.create-ticket label {
+.ticket-section label {
     font-weight: 600;
+    font-size: 1.5em;
     text-decoration: none;
 }
 
 #id_title {
     padding: 0.5em 0.4em;
+    font-size: 16px;
 }
 
 #id_description {
     padding: 0.4em;
+    font-size: 16px;
 }
 
-.create-ticket button {
+.ticket-section button {
     align-self: flex-end;
+    margin-bottom: 2em;
 }
