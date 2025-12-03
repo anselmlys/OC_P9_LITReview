@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Vos posts</h2>
+    <ul>
+        {% for ticket in tickets %}
+            <li>{{ ticket.time_created }}</li>
+            <li>{{ ticket.title }}</li>
+            <li>{{ ticket.description }}</li>
+            <li>{{ ticket.image }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

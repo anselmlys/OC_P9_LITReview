@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Modifier votre ticket</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-input">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+        <div class="form-input">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+        </div>
+        <div class="form-input">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+        </div>
+        <button class="default-button" type="submit">Envoyer</button>
+    </form>
+{% endblock content %}
