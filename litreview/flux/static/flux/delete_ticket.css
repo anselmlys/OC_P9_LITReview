@@ -13,6 +13,11 @@ p {
     font-size: 1.3em;
 }
 
-form {
+.button-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.default-button {
     margin: 2.5em 2em 2em auto;
 }
