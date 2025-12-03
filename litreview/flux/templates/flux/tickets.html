@@ -9,6 +9,7 @@
             <li>{{ ticket.title }}</li>
             <li>{{ ticket.description }}</li>
             <li>{{ ticket.image }}</li>
+            <a href="{% url 'modify_ticket' ticket.id %}">Modifier</a>
         {% endfor %}
     </ul>
 {% endblock content %}
