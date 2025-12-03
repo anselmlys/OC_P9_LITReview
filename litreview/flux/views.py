@@ -44,3 +44,14 @@ def modify_ticket(request, ticket_id):
     return render(request,
                   'flux/modify_ticket.html',
                   {'form': form})
+
+
+@login_required
+def delete_ticket(request, ticket_id):
+    ticket = models.Ticket.objects.get(id=ticket_id)
+
+    if request.method == 'POST':
+        ticket.delete()
+        return redirect('tickets')
+
+    return render(request, 'flux/delete_ticket.html', {'ticket': ticket})
