@@ -43,7 +43,7 @@ def modify_ticket(request, ticket_id):
 
     return render(request,
                   'flux/modify_ticket.html',
-                  {'form': form})
+                  {'form': form, 'ticket': ticket})
 
 
 @login_required

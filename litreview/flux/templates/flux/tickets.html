@@ -8,7 +8,9 @@
             <li>{{ ticket.time_created }}</li>
             <li>{{ ticket.title }}</li>
             <li>{{ ticket.description }}</li>
-            <li>{{ ticket.image }}</li>
+            {% if ticket.image.url is not None %}
+                <li><img src="{{ ticket.image.url }}"></li>
+            {% endif %}
             <a href="{% url 'modify_ticket' ticket.id %}">Modifier</a>
             <a href="{% url 'delete_ticket' ticket.id %}">Supprimer</a>
         {% endfor %}

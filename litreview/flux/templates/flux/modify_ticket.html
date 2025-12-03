@@ -15,6 +15,7 @@
         </div>
         <div class="form-input">
             {{ form.image.label_tag }}
+            <img src="{{ ticket.image.url }}">
             {{ form.image }}
         </div>
         <button class="default-button" type="submit">Envoyer</button>
