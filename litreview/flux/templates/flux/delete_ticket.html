@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'flux/delete_ticket.css' %}">
+{% endblock css %}
+
 {% block content %}
-    <h2>Confirmation suppression du ticket</h2>
+    <div class="ticket-section">
+        <h2>Confirmation suppression du ticket</h2>
 
-    <p>Êtes-vous sûr de vouloir supprimer le ticket :</p>
-    <p>{{ ticket.title }} - Créé le : {{ ticket.time_created }}</p>
+        <p>Êtes-vous sûr de vouloir supprimer le ticket :</p>
+        <p class="ticket-info">{{ ticket.title }} - Créé le : {{ ticket.time_created }}</p>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Supprimer">
-    </form>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input class="default-button" type="submit" value="Supprimer">
+        </form>
+    </div>
 {% endblock content %}

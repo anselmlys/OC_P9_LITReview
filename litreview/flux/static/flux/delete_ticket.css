@@ -1,0 +1,18 @@
+.ticket-section {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin-left: 20px;
+    font-size: 2em;
+}
+
+.ticket-info {
+    margin-top: 0.5em;
+    font-size: 1.3em;
+}
+
+form {
+    margin: 2.5em 2em 2em auto;
+}
