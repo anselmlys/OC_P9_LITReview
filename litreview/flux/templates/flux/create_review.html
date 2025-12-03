@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block content %}
+    <h2>Créer une critique</h2>
+    <div class="ticket-section">
+        <h3>Vous êtes en train de poster en réponse à</h3>
+        <p>{{ ticket.user }} a demandé une critique</p>
+        <p>{{ ticket.time_created }}</p>
+        <p>{{ ticket.title }}</p>
+        <p>{{ ticket.description }}</p>
+        {% if ticket.image.url is not None %}
+            <img src="{{ ticket.image.url }}">
+        {% endif %}
+    </div>
+    <div class="review-section">
+        <h3>Critique</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-input">
+                {{ form.headline.label_tag }}
+                {{ form.headline }}
+            </div>
+            <div class="form-input">
+                {{ form.rating.label_tag }}
+                {{ form.rating }}
+            </div>
+            <div class="form-input">
+                {{ form.body.label_tag }}
+                {{ form.body }}
+            </div>
+            <button class="default-button" type="submit">Envoyer</button>
+        </form>
+    </div>
+{% endblock content %}

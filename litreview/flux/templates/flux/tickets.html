@@ -5,6 +5,7 @@
     <h2>Vos posts</h2>
     <ul>
         {% for ticket in tickets %}
+            <p>Vous avez publié un ticket</p>
             <li>{{ ticket.time_created }}</li>
             <li>{{ ticket.title }}</li>
             <li>{{ ticket.description }}</li>
@@ -13,6 +14,11 @@
             {% endif %}
             <a href="{% url 'modify_ticket' ticket.id %}">Modifier</a>
             <a href="{% url 'delete_ticket' ticket.id %}">Supprimer</a>
+        {% endfor %}
+        {% for review in reviews %}
+            <p>Vous avez publié une critique</p>
+            <li>{{ review.headline }}</li>
+            <li>{{ review.body }}</li>
         {% endfor %}
     </ul>
 {% endblock content %}

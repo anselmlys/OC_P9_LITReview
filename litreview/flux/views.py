@@ -13,7 +13,8 @@ def home(request):
 @login_required
 def tickets(request):
     tickets = models.Ticket.objects.all()
-    return render(request, 'flux/tickets.html', {'tickets': tickets})
+    reviews = models.Review.objects.all()
+    return render(request, 'flux/tickets.html', {'tickets': tickets, 'reviews': reviews})
 
 
 @login_required
@@ -27,6 +28,28 @@ def create_ticket(request):
             image.save()
             return redirect('home')
     return render(request, 'flux/create_ticket.html', context={'form': form})
+
+
+@login_required
+def create_review(request, ticket_id):
+    ticket = models.Ticket.objects.get(id=ticket_id)
+    form = forms.ReviewForm()
+
+    if request.method == 'POST':
+        form = forms.ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect('home')
+
+    return render(request, 'flux/create_review.html', {'ticket': ticket, 'form': form})
+
+
+@login_required
+def create_review_and_ticket(request):
+    pass
 
 
 @login_required
