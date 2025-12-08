@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from . import models
 
@@ -35,9 +36,21 @@ class ReviewForm(forms.ModelForm):
         (5, '5'),
     ]
 
-    headline = forms.CharField(label='Titre')
-    rating = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
-    body = forms.CharField(widget=forms.Textarea, label='Commentaire')
+    headline = forms.CharField(label='Titre',
+                               max_length=128,
+                               error_messages={
+                                'required': "Veuillez ajouter un titre",
+                                'max_length': "Ne doit pas dépasser les 128 caractères.",
+                            })
+    rating = forms.ChoiceField(widget=forms.RadioSelect,
+                               choices=CHOICES)
+    body = forms.CharField(widget=forms.Textarea,
+                           label='Commentaire',
+                           max_length=8192,
+                           required=False,
+                           error_messages={
+                               'max_length': "Ne doit pas dépasser les 8192 caractères.",
+                           })
 
     class Meta:
         model = models.Review
