@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block css %}
+    <link rel="stylesheet" href="{% static 'flux/create_ticket_and_review.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -50,8 +51,8 @@
                         <p class="error-message">{{ error }}</p>
                     {% endfor %}
                 </div>
+                <button class="default-button" type="submit">Envoyer</button>
             </div>
-            <button class="default-button" type="submit">Envoyer</button>
         </form>
     </div>
 {% endblock content %}
