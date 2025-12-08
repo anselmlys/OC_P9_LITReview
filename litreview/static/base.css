@@ -55,3 +55,8 @@ h2 {
     color: #2A282A;
     box-shadow: 2px 2px 5px #A18B7D;
 }
+
+.error-message {
+    color: red;
+    font-size: 13px;
+}

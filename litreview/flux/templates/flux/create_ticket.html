@@ -13,10 +13,16 @@
             <div class="form-input">
                 {{ form.title.label_tag }}
                 {{ form.title }}
+                {% for error in form.title.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
             <div class="form-input">
                 {{ form.description.label_tag }}
                 {{ form.description }}
+                {% for error in form.description.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
             <div class="form-input">
                 {{ form.image.label_tag }}

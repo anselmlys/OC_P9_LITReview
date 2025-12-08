@@ -4,11 +4,21 @@ from . import models
 
 
 class TicketForm(forms.ModelForm):
-    title = forms.CharField(label='Titre')
+    title = forms.CharField(label='Titre',
+                            max_length=128,
+                            error_messages={
+                                'required': "Veuillez ajouter un titre",
+                                'max_length': "Ne doit pas dépasser les 128 caractères."
+                            })
 
     class Meta:
         model = models.Ticket
         fields = ['title', 'description', 'image']
+        error_messages = {
+            'description': {
+                'max_length': "Ne doit pas dépasser les 2048 caractères."
+            }
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
