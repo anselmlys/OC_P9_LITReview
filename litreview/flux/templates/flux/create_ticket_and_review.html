@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block content %}
+    <div class="content-section">
+        <h2>Créer une critique</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="ticket-section">
+                <h3>Livre / Article</h3>
+                <div class="form-input">
+                    {{ ticket_form.title.label_tag }}
+                    {{ ticket_form.title }}
+                    {% for error in ticket_form.title.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-input">
+                    {{ ticket_form.description.label_tag }}
+                    {{ ticket_form.description }}
+                    {% for error in ticket_form.description.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-input">
+                    {{ ticket_form.image.label_tag }}
+                    {{ ticket_form.image }}
+                </div>
+            </div>
+            <div class="review-section">
+                <h3>Critique</h3>
+                <div class="form-input">
+                    {{ review_form.headline.label_tag }}
+                    {{ review_form.headline }}
+                    {% for error in review_form.headline.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-input">
+                    {{ review_form.rating.label_tag }}
+                    {{ review_form.rating }}
+                </div>
+                <div class="form-input">
+                    {{ review_form.body.label_tag }}
+                    {{ review_form.body }}
+                    {% for error in review_form.body.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <button class="default-button" type="submit">Envoyer</button>
+        </form>
+    </div>
+{% endblock content %}
