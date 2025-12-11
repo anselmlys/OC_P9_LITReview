@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from itertools import chain
 
 from . import forms
 from . import models
@@ -11,13 +12,25 @@ def home(request):
 
 
 @login_required
-def tickets(request):
+def posts(request):
     user = request.user
 
     tickets = models.Ticket.objects.filter(user=user)
     reviews = models.Review.objects.filter(user=user)
-    
-    return render(request, 'flux/tickets.html', {'tickets': tickets, 'reviews': reviews})
+
+    posts = []
+
+    for ticket in tickets:
+        ticket.type = "ticket"
+        posts.append(ticket)
+
+    for review in reviews:
+        review.type = "review"
+        posts.append(review)
+
+    posts = sorted(posts, key=lambda post: post.time_created, reverse=True)
+
+    return render(request, 'flux/posts.html', {'posts': posts})
 
 
 @login_required
@@ -85,7 +98,7 @@ def modify_ticket(request, ticket_id):
         form = forms.TicketForm(request.POST, instance=ticket)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('posts')
     else:
         form = forms.TicketForm(instance=ticket)
 
@@ -105,7 +118,7 @@ def modify_review(request, ticket_id, review_id):
         form = forms.ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('posts')
     else:
         form = forms.ReviewForm(instance=review)
 
@@ -119,7 +132,7 @@ def delete_ticket(request, ticket_id):
 
     if request.method == 'POST':
         ticket.delete()
-        return redirect('tickets')
+        return redirect('posts')
 
     return render(request, 'flux/delete_ticket.html', {'ticket': ticket})
 
@@ -130,6 +143,6 @@ def delete_review(request, ticket_id, review_id):
 
     if request.method == 'POST':
         review.delete()
-        return redirect('tickets')
+        return redirect('posts')
     
     return render(request, 'flux/delete_review.html', {'review': review})
