@@ -12,8 +12,11 @@ def home(request):
 
 @login_required
 def tickets(request):
-    tickets = models.Ticket.objects.all()
-    reviews = models.Review.objects.all()
+    user = request.user
+
+    tickets = models.Ticket.objects.filter(user=user)
+    reviews = models.Review.objects.filter(user=user)
+    
     return render(request, 'flux/tickets.html', {'tickets': tickets, 'reviews': reviews})
 
 
