@@ -1,32 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'flux/posts.css' %}">
+{% endblock css %}
+
 {% block content %}
-    <h2>Vos posts</h2>
-    <ul>
+    <div class="posts-tab">
+        <h2>Vos posts</h2>
         {% for post in posts %}
             {% if post.type == "ticket" %}
                 <div class="ticket-section">
-                    <p>Vous avez publié un ticket</p>
-                    <li>{{ post.time_created }}</li>
-                    <li>{{ post.title }}</li>
-                    <li>{{ post.description }}</li>
-                    {% if post.image.url is not None %}
-                        <li><img src="{{ post.image.url }}"></li>
-                    {% endif %}
-                    <a href="{% url 'modify_ticket' post.id %}">Modifier</a>
-                    <a href="{% url 'delete_ticket' post.id %}">Supprimer</a>
+                    <h4>Vous avez publié un ticket</h4>
+                    <div class="post-details">
+                        <p class="creation-date">{{ post.time_created }}</p>
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.description }}</p>
+                        {% if post.image.url is not None %}
+                            <img src="{{ post.image.url }}">
+                        {% endif %}
+                    </div>
+                    <div class="button-section">
+                        <a class="default-button" href="{% url 'modify_ticket' post.id %}">Modifier</a>
+                        <a class="default-button" href="{% url 'delete_ticket' post.id %}">Supprimer</a>
+                    </div>
                 </div>
             {% elif post.type == "review" %}
                 <div class="review-section">
-                    <p>Vous avez publié une critique</p>
-                    <li>{{ post.time_created }}</li>
-                    <li>{{ post.headline }}</li>
-                    <li>{{ post.body }}</li>
-                    <a href="{% url 'modify_review' post.ticket.id post.id %}">Modifier</a>
-                    <a href="{% url 'delete_review' post.ticket.id post.id %}">Supprimer</a>
+                    <h4>Vous avez publié une critique</h4>
+                    <div class="post-details">
+                        <p class="creation-date">{{ post.time_created }}</p>
+                        <h3>{{ post.headline }} - {{ post.rating }}</h3>
+                        <p>{{ post.body }}</p>
+                        <div class="review-ticket-info">
+                            <p>Ticket - {{ post.ticket.user }}</p>
+                            <h5>{{ post.ticket.title }}</h5>
+                            {% if post.ticket.image.url is not None %}
+                                <img src="{{ post.ticket.image.url }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="button-section">
+                        <a class="default-button" href="{% url 'modify_review' post.ticket.id post.id %}">Modifier</a>
+                        <a class="default-button" href="{% url 'delete_review' post.ticket.id post.id %}">Supprimer</a>
+                    </div>
                 </div>    
             {% endif %}
         {% endfor %}
-    </ul>
+    </div>
 {% endblock content %}

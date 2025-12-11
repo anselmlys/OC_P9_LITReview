@@ -1,0 +1,68 @@
+.posts-tab {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-section,
+.review-section {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid white;
+    padding: 10px;
+    margin: 0 450px;
+    gap: 15px;
+}
+
+.post-details {
+    display: flex;
+    flex-direction: column;
+    padding: 0 80px;
+    gap: 20px;
+}
+
+.ticket-section img,
+.review-section img {
+    max-height: 220px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    align-self: center;
+    margin: 10px auto;
+}
+
+.creation-date {
+    align-self: flex-end;
+    font-size: 13px;
+}
+
+h4 {
+    font-weight: 600;
+    font-size: 15px;
+    color: #A18B7D;
+}
+
+.review-ticket-info {
+    background-color: #CCC2B8;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #A18B7D;
+    padding: 10px 10px;
+    margin: 20px 50px 0;
+    gap: 10px;
+}
+
+.review-ticket-info p {
+    font-size: 15px;
+}
+
+h5 {
+    font-size: 15px;
+}
+
+.button-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 10px;
+    margin: 20px 10px 5px;
+}
