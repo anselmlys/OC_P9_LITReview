@@ -30,10 +30,11 @@ urlpatterns = [
     path('logout/', authentication.views.logout_user, name='logout'),
     path('tickets/', flux.views.tickets, name='tickets'),
     path('tickets/create/', flux.views.create_ticket, name='create_ticket'),
+    path('tickets/create-with-review/', flux.views.create_ticket_and_review, name='create-ticket-review'),
     path('tickets/<int:ticket_id>/modify/', flux.views.modify_ticket, name='modify_ticket'),
     path('tickets/<int:ticket_id>/delete/', flux.views.delete_ticket, name='delete_ticket'),
-    path('tickets/create-with-review/', flux.views.create_ticket_and_review, name='create-ticket-review'),
     path('tickets/<int:ticket_id>/create-review/', flux.views.create_review, name='create_review'),
+    path('tickets/<int:ticket_id>/reviews/<int:review_id>/', flux.views.modify_review, name='modify_review'),
 ]
 
 if settings.DEBUG:

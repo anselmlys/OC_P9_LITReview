@@ -19,6 +19,7 @@
             <p>Vous avez publié une critique</p>
             <li>{{ review.headline }}</li>
             <li>{{ review.body }}</li>
+            <a href="{% url 'modify_review' review.ticket.id review.id %}">Modifier</a>
         {% endfor %}
     </ul>
 {% endblock content %}

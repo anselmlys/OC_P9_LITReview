@@ -35,6 +35,8 @@ def create_review(request, ticket_id):
     ticket = models.Ticket.objects.get(id=ticket_id)
     form = forms.ReviewForm()
 
+    page_title = "Créer une critique"
+
     if request.method == 'POST':
         form = forms.ReviewForm(request.POST)
         if form.is_valid():
@@ -44,7 +46,8 @@ def create_review(request, ticket_id):
             review.save()
             return redirect('home')
 
-    return render(request, 'flux/create_review.html', {'ticket': ticket, 'form': form})
+    return render(request, 'flux/create_review.html',
+                  {'ticket': ticket, 'form': form, 'page_title': page_title})
 
 
 @login_required
@@ -86,6 +89,25 @@ def modify_ticket(request, ticket_id):
     return render(request,
                   'flux/modify_ticket.html',
                   {'form': form, 'ticket': ticket})
+
+
+@login_required
+def modify_review(request, ticket_id, review_id):
+    ticket = models.Ticket.objects.get(id=ticket_id)
+    review = models.Review.objects.get(id=review_id)
+
+    page_title = "Modifier votre critique"
+
+    if request.method == 'POST':
+        form = forms.ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = forms.ReviewForm(instance=review)
+
+    return render(request, 'flux/create_review.html',
+                  {'ticket': ticket, 'form': form, 'page_title': page_title})
 
 
 @login_required
