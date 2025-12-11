@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from . import forms
@@ -76,7 +76,7 @@ def create_ticket_and_review(request):
 
 @login_required
 def modify_ticket(request, ticket_id):
-    ticket = models.Ticket.objects.get(id=ticket_id)
+    ticket = get_object_or_404(models.Ticket, pk=ticket_id, user=request.user)
 
     if request.method == 'POST':
         form = forms.TicketForm(request.POST, instance=ticket)
@@ -93,8 +93,8 @@ def modify_ticket(request, ticket_id):
 
 @login_required
 def modify_review(request, ticket_id, review_id):
+    review = get_object_or_404(models.Review, pk=review_id, user=request.user)
     ticket = models.Ticket.objects.get(id=ticket_id)
-    review = models.Review.objects.get(id=review_id)
 
     page_title = "Modifier votre critique"
 
@@ -112,7 +112,7 @@ def modify_review(request, ticket_id, review_id):
 
 @login_required
 def delete_ticket(request, ticket_id):
-    ticket = models.Ticket.objects.get(id=ticket_id)
+    ticket = get_object_or_404(models.Ticket, pk=ticket_id, user=request.user)
 
     if request.method == 'POST':
         ticket.delete()
@@ -122,8 +122,8 @@ def delete_ticket(request, ticket_id):
 
 @login_required
 def delete_review(request, ticket_id, review_id):
+    review = get_object_or_404(models.Review, pk=review_id, user=request.user)
     ticket = models.Ticket.objects.get(id=ticket_id)
-    review = models.Review.objects.get(id=review_id)
 
     if request.method == 'POST':
         review.delete()
