@@ -46,7 +46,7 @@ def create_review(request, ticket_id):
             review.save()
             return redirect('home')
 
-    return render(request, 'flux/create_review.html',
+    return render(request, 'flux/create_or_modify_review.html',
                   {'ticket': ticket, 'form': form, 'page_title': page_title})
 
 
@@ -106,7 +106,7 @@ def modify_review(request, ticket_id, review_id):
     else:
         form = forms.ReviewForm(instance=review)
 
-    return render(request, 'flux/create_review.html',
+    return render(request, 'flux/create_or_modify_review.html',
                   {'ticket': ticket, 'form': form, 'page_title': page_title})
 
 
