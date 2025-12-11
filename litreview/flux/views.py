@@ -119,3 +119,14 @@ def delete_ticket(request, ticket_id):
         return redirect('tickets')
 
     return render(request, 'flux/delete_ticket.html', {'ticket': ticket})
+
+@login_required
+def delete_review(request, ticket_id, review_id):
+    ticket = models.Ticket.objects.get(id=ticket_id)
+    review = models.Review.objects.get(id=review_id)
+
+    if request.method == 'POST':
+        review.delete()
+        return redirect('tickets')
+    
+    return render(request, 'flux/delete_review.html', {'review': review})

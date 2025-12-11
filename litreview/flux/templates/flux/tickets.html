@@ -20,6 +20,7 @@
             <li>{{ review.headline }}</li>
             <li>{{ review.body }}</li>
             <a href="{% url 'modify_review' review.ticket.id review.id %}">Modifier</a>
+            <a href="{% url 'delete_review' review.ticket.id review.id %}">Supprimer</a>
         {% endfor %}
     </ul>
 {% endblock content %}
