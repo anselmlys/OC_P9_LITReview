@@ -15,7 +15,7 @@
                     <p>{{ ticket.user }} a demandé une critique</p>
                     <p>{{ ticket.time_created }}</p>
                 </div>
-                <p>{{ ticket.title }}</p>
+                <h4>{{ ticket.title }}</h4>
                 <p>{{ ticket.description }}</p>
                 {% if ticket.image.url is not None %}
                     <img src="{{ ticket.image.url }}">
