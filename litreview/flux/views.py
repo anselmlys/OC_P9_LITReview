@@ -30,7 +30,9 @@ def posts(request):
 
     posts = sorted(posts, key=lambda post: post.time_created, reverse=True)
 
-    return render(request, 'flux/posts.html', {'posts': posts})
+    star_range = range(1, 6)
+
+    return render(request, 'flux/posts.html', {'posts': posts, 'star_range': star_range})
 
 
 @login_required

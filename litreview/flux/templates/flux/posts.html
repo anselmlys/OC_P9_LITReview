@@ -17,7 +17,7 @@
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.description }}</p>
                         {% if post.image.url is not None %}
-                            <img src="{{ post.image.url }}">
+                            <img class="post-image" src="{{ post.image.url }}">
                         {% endif %}
                     </div>
                     <div class="button-section">
@@ -30,13 +30,24 @@
                     <h4>Vous avez publié une critique</h4>
                     <div class="post-details">
                         <p class="creation-date">{{ post.time_created }}</p>
-                        <h3>{{ post.headline }} - {{ post.rating }}</h3>
+                        <div class="title-and-stars">
+                            <h3>{{ post.headline }} - </h3>
+                            <div class="star-rating">
+                                {% for i in star_range %}
+                                    {% if i <= post.rating %}
+                                        <img class="star-icon" src="{% static 'img/full-star-icon.png' %}">
+                                    {% else %}
+                                        <img class="star-icon" src="{% static 'img/empty-star-icon.png' %}">
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
                         <p>{{ post.body }}</p>
                         <div class="review-ticket-info">
                             <p>Ticket - {{ post.ticket.user }}</p>
                             <h5>{{ post.ticket.title }}</h5>
                             {% if post.ticket.image.url is not None %}
-                                <img src="{{ post.ticket.image.url }}">
+                                <img class="post-image" src="{{ post.ticket.image.url }}">
                             {% endif %}
                         </div>
                     </div>

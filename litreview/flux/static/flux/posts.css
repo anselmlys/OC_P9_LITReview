@@ -22,8 +22,20 @@
     gap: 20px;
 }
 
-.ticket-section img,
-.review-section img {
+.title-and-stars {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: end;
+}
+
+.star-icon {
+    width: 15px;
+    height: auto;
+    object-fit: contain;
+}
+
+.post-image {
     max-height: 220px;
     height: auto;
     width: auto;
