@@ -12,6 +12,15 @@ def home(request):
 
 
 @login_required
+def subscriptions(request):
+    user_subscriptions = models.UserFollows.objects.filter(user=request.user)
+    subscriptions_to_user = models.UserFollows.objects.filter(followed_user=request.user)
+    return render(request, 'flux/subscriptions.html',
+                  {'user_subscriptions': user_subscriptions,
+                   'subscriptions_to_user': subscriptions_to_user})
+
+
+@login_required
 def posts(request):
     user = request.user
 

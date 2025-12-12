@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h3>Abonnements</h3>
+    <ul>
+        {% for subscription in user_subscriptions %}
+            <li>{{ subscription.followed_user.username }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Abonnés</h3>
+    <ul>
+        {% for subscription in subscriptions_to_user %}
+            <li>{{ subscription.user.username }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
