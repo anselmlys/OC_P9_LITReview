@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from itertools import chain
 
 from . import forms
 from . import models
@@ -16,20 +15,32 @@ def subscriptions(request):
     user_subscriptions = models.UserFollows.objects.filter(user=request.user)
     subscriptions_to_user = models.UserFollows.objects.filter(followed_user=request.user)
 
-    form = forms.UserSubscriptionForm()
+    subscribe_form = forms.UserSubscriptionForm()
+    unsubscribe_form = forms.CancelUserSubscriptionForm()
+
     if request.method == 'POST':
-        form = forms.UserSubscriptionForm(request.POST)
-        if form.is_valid():
-            user_follows = form.save(commit=False)
-            user_follows.user = request.user
-            user_follows.save()
-            return redirect('subscriptions')
+        if 'subscribe' in request.POST:
+            subscribe_form = forms.UserSubscriptionForm(request.POST)
+            if subscribe_form.is_valid():
+                user_follows = subscribe_form.save(commit=False)
+                user_follows.user = request.user
+                user_follows.save()
+                return redirect('subscriptions')
+        if 'unsubscribe' in request.POST:
+            unsubscribe_form = forms.CancelUserSubscriptionForm(request.POST)
+            if unsubscribe_form.is_valid():
+                subscription_id = unsubscribe_form.cleaned_data['subscription_id']
+                user_follows = get_object_or_404(models.UserFollows, pk=subscription_id, user=request.user)
+                user_follows.delete()
+                return redirect('subscriptions')
+
     else:
-        form = forms.UserSubscriptionForm()
+        subscribe_form = forms.UserSubscriptionForm()
     
     return render(request,
                   'flux/subscriptions.html',
-                  {'form': form,
+                  {'subscribe_form': subscribe_form,
+                   'unsubscribe_form': unsubscribe_form,
                    'user_subscriptions': user_subscriptions,
                    'subscriptions_to_user': subscriptions_to_user})
 

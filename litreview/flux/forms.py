@@ -65,6 +65,8 @@ class ReviewForm(forms.ModelForm):
 User = get_user_model()
 
 class UserSubscriptionForm(forms.ModelForm):
+    subscribe = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
     followed_user = forms.CharField(
            label='',
            widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'})
@@ -83,3 +85,8 @@ class UserSubscriptionForm(forms.ModelForm):
             raise forms.ValidationError("Utilisateur introuvable.")
         
         return user
+
+
+class CancelUserSubscriptionForm(forms.Form):
+    unsubscribe = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+    subscription_id = forms.IntegerField(widget=forms.HiddenInput)
