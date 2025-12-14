@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from . import models
@@ -59,3 +60,26 @@ class ReviewForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
+
+
+User = get_user_model()
+
+class UserSubscriptionForm(forms.ModelForm):
+    followed_user = forms.CharField(
+           label='',
+           widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'})
+    )
+
+    class Meta:
+        model = models.UserFollows
+        fields = ['followed_user']
+
+    def clean_followed_user(self):
+        username = self.cleaned_data['followed_user'].strip()
+
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise forms.ValidationError("Utilisateur introuvable.")
+        
+        return user

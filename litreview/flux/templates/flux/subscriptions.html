@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+    <h3>Suivre d'autres utilisateurs</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.followed_user }}
+        {% for error in form.followed_user.errors %}
+            <p class="error-message">{{ error }}</p>
+        {% endfor %}
+        <button type="submit">Envoyer</button>
+    </form>
     <h3>Abonnements</h3>
     <ul>
         {% for subscription in user_subscriptions %}
