@@ -11,7 +11,14 @@
         <header>
             <div class="nav-bar">
                 <h1>LITReview</h1>
-                {% block header %}{% endblock header %}
+                {% if user.is_authenticated %}
+                    <div class="tabs">
+                        <a href="{% url 'home' %}">Flux</a>
+                        <a href="{% url 'posts' %}">Posts</a>
+                        <a href="{% url 'subscriptions' %}">Abonnements</a>
+                        <a href="{% url 'logout' %}">Se déconnecter</a>
+                    </div>
+                {% endif %}
             </div>
         </header>
         <section>
