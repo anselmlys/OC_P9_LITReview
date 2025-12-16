@@ -12,15 +12,43 @@ body {
 
 .nav-bar {
     display: flex;
-    flex-direction: column;
     background-color: #A18B7D;
+    height: 80px;
+    width: 100%;
+    justify-content: end;
 }
 
 h1 {
     color: white;
-    font-size: 2.5em;
-    align-self: center;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
     padding: 0.2em;
+    z-index: 0;
+}
+
+.nav-bar .tabs {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-self: center;
+    z-index: 1;
+} 
+
+.tabs a {
+    display: block;
+    color: white;
+    font-size: 16px;
+    height: 100%;
+    padding: 0 15px;
+    align-content: center;
+}
+
+.tabs a:hover {
+    background-color: #CCC2B8;
+    color: #2A282A;
+    height: 100%;
 }
 
 h2 {
