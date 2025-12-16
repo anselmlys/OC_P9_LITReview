@@ -1,0 +1,81 @@
+.subscriptions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.search-user-section,
+.followed-user-section,
+.followed-by-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 40px auto;
+    width: 100%;
+    align-items: center;
+}
+
+.search-user-section form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.search-bar-and-button {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 8px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.search-user-section input {
+    text-align: center;
+    width: 100%;
+    font-size: 17px;
+}
+
+.search-user-section form .error-message {
+    margin: auto;
+    width: 50%;
+    font-size: 15px;
+}
+
+.followed-user-section,
+.followed-by-section {
+    width: 100%;
+}
+
+.subscriptions-section ul {
+    list-style: none;
+    border: 3px solid white;
+    width: 65%;
+}
+
+.subscriptions-section li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding-left: 20px;
+}
+
+.subscriptions-section li:not(:last-child) {
+    border-bottom: 1px solid white;
+}
+
+.subscriptions-section li:not(button) {
+    font-size: 20px;
+    font-weight: bold;
+    color: #A18B7D;
+}
+
+.followed-user-section button {
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    height: 50px;
+}

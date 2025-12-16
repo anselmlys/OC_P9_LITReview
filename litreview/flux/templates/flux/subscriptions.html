@@ -1,36 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'flux/subscriptions.css' %}">
+{% endblock css %}
+
 {% block content %}
-    <h3>Suivre d'autres utilisateurs</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ subscribe_form.subscribe }}
-        {{ subscribe_form.followed_user }}
-        {% for error in subscribe_form.followed_user.errors %}
-            <p class="error-message">{{ error }}</p>
-        {% endfor %}
-        <button type="submit">Envoyer</button>
-    </form>
-    <h3>Abonnements</h3>
-    <ul>
-        {% for subscription in user_subscriptions %}
-            <li>
-                {{ subscription.followed_user.username }}
-                <form method="post" style="display: inline;">
-                    {% csrf_token %}
-                    {{ unsubscribe_form.unsubscribe }}
-                    <input type="hidden" name="unsubscribe" value="true">
-                    <input type="hidden" name="subscription_id" value="{{ subscription.id }}">
-                    <button type="submit">Se Désabonner</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
-    <h3>Abonnés</h3>
-    <ul>
-        {% for subscription in subscriptions_to_user %}
-            <li>{{ subscription.user.username }}</li>
-        {% endfor %}
-    </ul>
+    <div class="subscriptions-section">
+        <div class="search-user-section">
+            <h3>Suivre d'autres utilisateurs</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ subscribe_form.subscribe }}
+                <div class="search-bar-and-button">
+                    {{ subscribe_form.followed_user }}
+                    <button class="default-button" type="submit">Envoyer</button>
+                </div>
+                {% for error in subscribe_form.followed_user.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
+            </form>
+        </div>
+        <div class="followed-user-section">
+            <h3>Abonnements</h3>
+            <ul>
+                {% for subscription in user_subscriptions %}
+                    <li>
+                        {{ subscription.followed_user.username }}
+                        <form method="post" style="display: inline;">
+                            {% csrf_token %}
+                            {{ unsubscribe_form.unsubscribe }}
+                            <input type="hidden" name="unsubscribe" value="true">
+                            <input type="hidden" name="subscription_id" value="{{ subscription.id }}">
+                            <button class="default-button" type="submit">Se Désabonner</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="followed-by-section">
+            <h3>Abonnés</h3>
+            <ul>
+                {% for subscription in subscriptions_to_user %}
+                    <li>{{ subscription.user.username }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock content %}
