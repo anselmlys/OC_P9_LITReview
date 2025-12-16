@@ -15,12 +15,12 @@ def subscriptions(request):
     user_subscriptions = models.UserFollows.objects.filter(user=request.user)
     subscriptions_to_user = models.UserFollows.objects.filter(followed_user=request.user)
 
-    subscribe_form = forms.UserSubscriptionForm()
+    subscribe_form = forms.UserSubscriptionForm(user=request.user)
     unsubscribe_form = forms.CancelUserSubscriptionForm()
 
     if request.method == 'POST':
         if 'subscribe' in request.POST:
-            subscribe_form = forms.UserSubscriptionForm(request.POST)
+            subscribe_form = forms.UserSubscriptionForm(request.POST, user=request.user)
             if subscribe_form.is_valid():
                 user_follows = subscribe_form.save(commit=False)
                 user_follows.user = request.user
@@ -35,7 +35,7 @@ def subscriptions(request):
                 return redirect('subscriptions')
 
     else:
-        subscribe_form = forms.UserSubscriptionForm()
+        subscribe_form = forms.UserSubscriptionForm(user=request.user)
     
     return render(request,
                   'flux/subscriptions.html',

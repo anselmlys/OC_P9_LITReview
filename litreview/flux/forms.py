@@ -76,11 +76,19 @@ class UserSubscriptionForm(forms.ModelForm):
         model = models.UserFollows
         fields = ['followed_user']
 
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+
     def clean_followed_user(self):
         username = self.cleaned_data['followed_user'].strip()
 
         try:
             user = User.objects.get(username=username)
+            if self.user == user:
+                raise forms.ValidationError("Vous ne pouvez pas vous ajouter vous-même.")
+            if models.UserFollows.objects.filter(user=self.user, followed_user=user).exists():
+                raise forms.ValidationError("Vous suivez déjà cet utilisateur.")
         except User.DoesNotExist:
             raise forms.ValidationError("Utilisateur introuvable.")
         
