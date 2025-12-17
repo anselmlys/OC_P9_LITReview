@@ -1,2 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'flux/flux.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <div class="posts-tab">
+        <div class="review-buttons-section">
+            <a class="default-button" href="{% url 'create_ticket' %}">Demander une critique</a>
+            <a class="default-button" href="{% url 'create-ticket-review' %}">Créer une critique</a>
+        </div>
+        {% for post in posts %}
+            {% if post.type == "ticket" %}
+                <div class="ticket-section">
+                    {% if request.user == post.user %}
+                        <h4>Vous avez publié un ticket</h4>
+                    {% else %}
+                        <h4>{{ post.user }} a demandé une critique</h4>
+                    {% endif %}
+                    <div class="post-details">
+                        <p class="creation-date">{{ post.time_created }}</p>
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.description }}</p>
+                        {% if post.image.url is not None %}
+                            <img class="post-image" src="{{ post.image.url }}">
+                        {% endif %}
+                    </div>
+                    <div class="button-section">
+                        <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                    </div>
+                </div>
+            {% elif post.type == "review" %}
+                <div class="review-section">
+                    {% if request.user == post.user %}
+                        <h4>Vous avez publié une critique</h4>
+                    {% else %}
+                        <h4>{{ post.user }} a publié une critique</h4>
+                    {% endif %}
+                    <div class="post-details">
+                        <p class="creation-date">{{ post.time_created }}</p>
+                        <div class="title-and-stars">
+                            <h3>{{ post.headline }} - </h3>
+                            <div class="star-rating">
+                                {% for i in star_range %}
+                                    {% if i <= post.rating %}
+                                        <img class="star-icon" src="{% static 'img/full-star-icon.png' %}">
+                                    {% else %}
+                                        <img class="star-icon" src="{% static 'img/empty-star-icon.png' %}">
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <p>{{ post.body }}</p>
+                        <div class="review-ticket-info">
+                            <p>Ticket - {{ post.ticket.user }}</p>
+                            <h5>{{ post.ticket.title }}</h5>
+                            {% if post.ticket.image.url is not None %}
+                                <img class="post-image" src="{{ post.ticket.image.url }}">
+                            {% endif %}
+                            <div class="button-section">
+                                <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}

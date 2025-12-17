@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from . import forms
 from . import models
@@ -7,7 +8,40 @@ from . import models
 
 @login_required
 def home(request):
-    return render(request, 'flux/home.html')
+    user = request.user
+    followed_user_pairs = models.UserFollows.objects.filter(user=user)
+    followed_by_pairs = models.UserFollows.objects.filter(followed_user=user)
+
+    followed_users = []
+    for followed_user_pair in followed_user_pairs:
+        followed_users.append(followed_user_pair.followed_user)
+
+    followed_by_users = []
+    for followed_by_pair in followed_by_pairs:
+        followed_by_users.append(followed_by_pair.user)
+
+    posts = []
+
+    user_tickets = models.Ticket.objects.filter(
+        Q(user=user) | Q(user__in=followed_users)
+    )
+    user_reviews = models.Review.objects.filter(
+        Q(user=user) | Q(user__in=followed_users) | Q(user__in=followed_by_users, ticket__user=user)
+        )
+
+    for ticket in user_tickets:
+        ticket.type = "ticket"
+        posts.append(ticket)
+
+    for review in user_reviews:
+        review.type = "review"
+        posts.append(review)
+
+    posts = sorted(posts, key=lambda post: post.time_created, reverse=True)
+
+    star_range = range(1, 6)
+
+    return render(request, 'flux/home.html', {'posts': posts, 'star_range': star_range})
 
 
 @login_required
