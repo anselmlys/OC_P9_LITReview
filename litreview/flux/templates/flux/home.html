@@ -63,7 +63,7 @@
                             {% endif %}
                             <div class="button-section">
                                 {% if post.ticket.id not in reviewed_tickets_id %}
-                                    <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                                    <a class="default-button" href="{% url 'create_review' post.ticket.id %}">Créer une critique</a>
                                 {% endif %}
                             </div>
                         </div>
