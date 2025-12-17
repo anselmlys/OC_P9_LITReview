@@ -1,7 +1,7 @@
 .content-section {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 95%;
     margin: auto;
 }
 
@@ -18,7 +18,7 @@
     flex-direction: column;
     border: 3px solid #A18B7D;
     padding: 10px 10px;
-    margin: 20px 50px;
+    margin: 15px 5px 0;
     gap: 10px;
 }
 
@@ -57,7 +57,7 @@
 .review-section .form-input {
     display: flex;
     flex-direction: column;
-    margin: 0 20px;
+    margin: 0 10px;
     gap: 10px;
 }
 
@@ -85,4 +85,21 @@
 .review-section button {
     align-self: flex-end;
     margin: 1em;
+}
+
+
+/*Responsive design from laptop to desktop*/
+@media screen and (min-width: 992px) {
+    .content-section {
+        width: 70%;
+    }
+
+    .ticket-details {
+        margin: 20px 50px;
+        gap: 10px;
+    }
+
+    .review-section .form-input {
+        margin: 0 20px;
+    }
 }

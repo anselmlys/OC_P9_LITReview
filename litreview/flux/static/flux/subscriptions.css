@@ -10,8 +10,8 @@
 .followed-by-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin: 40px auto;
+    gap: 15px;
+    margin-top: 35px;
     width: 100%;
     align-items: center;
 }
@@ -25,11 +25,11 @@
 .search-bar-and-button {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 90%;
     margin: auto;
     margin-bottom: 8px;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .search-user-section input {
@@ -52,7 +52,7 @@
 .subscriptions-section ul {
     list-style: none;
     border: 3px solid white;
-    width: 65%;
+    width: 90%;
 }
 
 .subscriptions-section li {
@@ -61,7 +61,7 @@
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .subscriptions-section li:not(:last-child) {
@@ -69,7 +69,7 @@
 }
 
 .subscriptions-section li:not(button) {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     color: #A18B7D;
 }
@@ -78,4 +78,31 @@
     border-top-right-radius: 0%;
     border-bottom-right-radius: 0%;
     height: 50px;
+}
+
+
+/*Responsive design from medium to large screen*/
+@media screen and (min-width: 768px) {
+    .search-user-section,
+    .followed-user-section,
+    .followed-by-section {
+        margin: 40px auto;
+    }
+
+    .search-bar-and-button {
+        width: 50%;
+        gap: 20px;
+    }
+
+    .subscriptions-section ul {
+        width: 65%;
+    }
+
+    .subscriptions-section li {
+        padding-left: 20px;
+    }
+
+    .subscriptions-section li:not(button) {
+        font-size: 20px;
+    }
 }

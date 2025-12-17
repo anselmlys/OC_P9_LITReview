@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 1em;
+    width: 100%;
 }
 
 .signup-page form {
@@ -13,7 +14,7 @@
 .signup-page input {
     margin-bottom: 15px;
     margin-top: 0;
-    width: 450px;
+    width: 90%;
     height: 30px;
     text-align: center;
     align-self: center;
@@ -25,4 +26,12 @@
     justify-content: right;
     gap: 0.7em;
     margin-top: 1em;
+}
+
+
+/*Responsive design from medium to large screen*/
+@media screen and (min-width: 768px) {
+    .signup-page input {
+        width: 450px;
+    }
 }

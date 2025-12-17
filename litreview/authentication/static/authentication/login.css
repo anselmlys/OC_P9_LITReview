@@ -1,9 +1,8 @@
 .login-page {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
     margin-top: 35px;
+    gap: 50px;
 }
 
 .login-page .signup-section,
@@ -12,6 +11,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+h2 {
+    font-size: 25px;
 }
 
 .login-section form {
@@ -30,4 +34,21 @@
 .login-section form button {
     align-self: flex-end;
     margin-top: 10px;
+}
+
+
+/*Responsive design from medium to large screen*/
+@media screen and (min-width: 768px) {
+    .login-page {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 35px;
+        gap: 15%;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
 }
