@@ -15,7 +15,7 @@
             {% if post.type == "ticket" %}
                 <div class="ticket-section">
                     {% if request.user == post.user %}
-                        <h4>Vous avez publié un ticket</h4>
+                        <h4>Vous avez publié un billet</h4>
                     {% else %}
                         <h4>{{ post.user }} a demandé une critique</h4>
                     {% endif %}

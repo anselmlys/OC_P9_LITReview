@@ -13,7 +13,7 @@
         <p class="item-to-be-deleted">{{ review.headline }} - Créé le : {{ review.time_created }}</p>
 
         <div class="button-section">
-            <a class="default-button" href="{% url 'tickets' %}">Retour</a>
+            <a class="default-button" href="{% url 'posts' %}">Retour</a>
             <form action="" method="post">
                 {% csrf_token %}
                 <input class="default-button" type="submit" value="Supprimer">
