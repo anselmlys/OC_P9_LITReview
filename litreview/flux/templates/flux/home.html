@@ -28,7 +28,9 @@
                         {% endif %}
                     </div>
                     <div class="button-section">
-                        <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                        {% if post.id not in reviewed_tickets_id %}
+                            <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                        {% endif %}
                     </div>
                 </div>
             {% elif post.type == "review" %}
@@ -60,7 +62,9 @@
                                 <img class="post-image" src="{{ post.ticket.image.url }}">
                             {% endif %}
                             <div class="button-section">
-                                <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                                {% if post.ticket.id not in reviewed_tickets_id %}
+                                    <a class="default-button" href="{% url 'create_review' post.id %}">Créer une critique</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

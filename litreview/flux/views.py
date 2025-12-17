@@ -9,39 +9,43 @@ from . import models
 @login_required
 def home(request):
     user = request.user
-    followed_user_pairs = models.UserFollows.objects.filter(user=user)
-    followed_by_pairs = models.UserFollows.objects.filter(followed_user=user)
 
+    followed_user_pairs = models.UserFollows.objects.filter(user=user)
     followed_users = []
     for followed_user_pair in followed_user_pairs:
         followed_users.append(followed_user_pair.followed_user)
 
+    followed_by_pairs = models.UserFollows.objects.filter(followed_user=user)
     followed_by_users = []
     for followed_by_pair in followed_by_pairs:
         followed_by_users.append(followed_by_pair.user)
 
     posts = []
 
-    user_tickets = models.Ticket.objects.filter(
+    tickets = models.Ticket.objects.filter(
         Q(user=user) | Q(user__in=followed_users)
     )
-    user_reviews = models.Review.objects.filter(
+    reviews = models.Review.objects.filter(
         Q(user=user) | Q(user__in=followed_users) | Q(user__in=followed_by_users, ticket__user=user)
         )
 
-    for ticket in user_tickets:
+    for ticket in tickets:
         ticket.type = "ticket"
         posts.append(ticket)
 
-    for review in user_reviews:
+    for review in reviews:
         review.type = "review"
         posts.append(review)
 
     posts = sorted(posts, key=lambda post: post.time_created, reverse=True)
 
+    reviewed_tickets_id = models.Review.objects.filter(user=user).values_list('ticket_id', flat=True)
+
     star_range = range(1, 6)
 
-    return render(request, 'flux/home.html', {'posts': posts, 'star_range': star_range})
+    return render(request,
+                  'flux/home.html',
+                  {'posts': posts, 'reviewed_tickets_id': reviewed_tickets_id, 'star_range': star_range})
 
 
 @login_required
