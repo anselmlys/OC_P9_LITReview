@@ -69,7 +69,7 @@
     font-size: 13px;
 }
 
-h4 {
+.creator {
     font-weight: 600;
     font-size: 15px;
     color: var(--medium-dark-color);
@@ -89,7 +89,7 @@ h4 {
     font-size: 15px;
 }
 
-h5 {
+h4 {
     font-size: 15px;
 }
 

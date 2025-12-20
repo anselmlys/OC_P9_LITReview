@@ -15,9 +15,9 @@
             {% if post.type == "ticket" %}
                 <div class="ticket-section">
                     {% if request.user == post.user %}
-                        <h4>Vous avez publié un billet</h4>
+                        <p class="creator">Vous avez publié un billet</p>
                     {% else %}
-                        <h4>{{ post.user }} a demandé une critique</h4>
+                        <p class="creator">{{ post.user }} a demandé une critique</p>
                     {% endif %}
                     <div class="post-details">
                         <p class="creation-date">{{ post.time_created }}</p>
@@ -36,9 +36,9 @@
             {% elif post.type == "review" %}
                 <div class="review-section">
                     {% if request.user == post.user %}
-                        <h4>Vous avez publié une critique</h4>
+                        <p class="creator">Vous avez publié une critique</p>
                     {% else %}
-                        <h4>{{ post.user }} a publié une critique</h4>
+                        <p class="creator">{{ post.user }} a publié une critique</p>
                     {% endif %}
                     <div class="post-details">
                         <p class="creation-date">{{ post.time_created }}</p>
@@ -57,7 +57,7 @@
                         <p>{{ post.body }}</p>
                         <div class="review-ticket-info">
                             <p>Ticket - {{ post.ticket.user }}</p>
-                            <h5>{{ post.ticket.title }}</h5>
+                            <h4>{{ post.ticket.title }}</h4>
                             {% if post.ticket.image.url is not None %}
                                 <img class="post-image" src="{{ post.ticket.image.url }}">
                             {% endif %}
