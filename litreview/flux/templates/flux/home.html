@@ -44,12 +44,22 @@
                         <p class="creation-date">{{ post.time_created }}</p>
                         <div class="title-and-stars">
                             <h3>{{ post.headline }} - </h3>
-                            <div class="star-rating">
+                            <div class="star-rating" aria-label="Noté {{ post.rating }} sur 5" role="img">
                                 {% for i in star_range %}
                                     {% if i <= post.rating %}
-                                        <img class="star-icon" src="{% static 'img/full-star-icon.png' %}">
+                                        <img
+                                            class="star-icon"
+                                            src="{% static 'img/full-star-icon.png' %}"
+                                            alt=""
+                                            aria-hidden="true"
+                                        >
                                     {% else %}
-                                        <img class="star-icon" src="{% static 'img/empty-star-icon.png' %}">
+                                        <img
+                                            class="star-icon"
+                                            src="{% static 'img/empty-star-icon.png' %}"
+                                            alt=""
+                                            aria-hidden="true"
+                                        >  
                                     {% endif %}
                                 {% endfor %}
                             </div>
