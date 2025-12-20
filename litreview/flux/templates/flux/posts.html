@@ -17,7 +17,11 @@
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.description }}</p>
                         {% if post.image.url is not None %}
-                            <img class="post-image" src="{{ post.image.url }}">
+                            <img
+                                class="post-image"
+                                src="{{ post.image.url }}"
+                                alt="Image représentant le billet : &quot;{{ post.title }}&quot;"
+                            >
                         {% endif %}
                     </div>
                     <div class="button-section">
@@ -57,7 +61,11 @@
                             <p>Ticket - {{ post.ticket.user }}</p>
                             <h4>{{ post.ticket.title }}</h4>
                             {% if post.ticket.image.url is not None %}
-                                <img class="post-image" src="{{ post.ticket.image.url }}">
+                                <img
+                                    class="post-image"
+                                    src="{{ post.ticket.image.url }}"
+                                    alt="Image représentant le billet : &quot;{{ post.ticket.title }}&quot;"
+                                >
                             {% endif %}
                         </div>
                     </div>

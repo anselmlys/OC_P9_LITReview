@@ -28,7 +28,10 @@
             <div class="form-input">
                 {{ form.image.label_tag }}
                 {% if ticket.image.url is not None %}
-                    <img src="{{ ticket.image.url }}">
+                    <img
+                        src="{{ ticket.image.url }}"
+                        alt="Image du billet : &quot;{{ ticket.title }}&quot;"
+                    >
                 {% endif %}
                 <div class="img-input-details">
                     {{ form.image }}
