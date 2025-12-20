@@ -16,7 +16,17 @@
             <p class="error-message">{{ message }}</p>
             <form method="post">
                 {% csrf_token %}
+                <label
+                    class="accessible-labels"
+                    for="{{ form.username.id_for_label }}">
+                        {{ form.username.label }}
+                </label>
                 {{ form.username }}
+                <label
+                    class="accessible-labels"
+                    for="{{ form.password.id_for_label }}">
+                        {{ form.password.label }}
+                </label>
                 {{ form.password }}
                 <button class="default-button" type="submit">Se connecter</button>
             </form>

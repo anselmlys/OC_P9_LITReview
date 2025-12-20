@@ -68,7 +68,7 @@ class UserSubscriptionForm(forms.ModelForm):
     subscribe = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     followed_user = forms.CharField(
-           label='',
+           label='Nom d\'utilisateur',
            widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'})
     )
 

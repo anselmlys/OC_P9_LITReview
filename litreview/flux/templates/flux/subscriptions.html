@@ -13,6 +13,11 @@
                 {% csrf_token %}
                 {{ subscribe_form.subscribe }}
                 <div class="search-bar-and-button">
+                    <label 
+                        class="accessible-labels"
+                        for="{{ subscribe_form.followed_user.id_for_label }}">
+                            {{ subscribe_form.followed_user.label }}
+                    </label>
                     {{ subscribe_form.followed_user }}
                     <button class="default-button" type="submit">Envoyer</button>
                 </div>

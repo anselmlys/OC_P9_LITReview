@@ -11,16 +11,31 @@
         <form method="post">
             {% csrf_token %}
 
+            <label
+                class="accessible-labels"
+                for="{{ form.username.id_for_label }}">
+                    {{ form.username.label }}
+            </label>
             {{ form.username }}
             {% for error in form.username.errors %}
                 <p class="error-message">{{ error }}</p>
             {% endfor %}
 
+            <label
+                class="accessible-labels"
+                for="{{ form.password1.id_for_label }}">
+                    {{ form.password1.label }}
+            </label>
             {{ form.password1 }}
             {% for error in form.password1.errors %}
                 <p class="error-message">{{ error }}</p>
             {% endfor %}
 
+            <label
+                class="accessible-labels"
+                for="{{ form.password2.id_for_label }}">
+                    {{ form.password2.label }}
+            </label>
             {{ form.password2 }}
             {% for error in form.password2.errors %}
                 <p class="error-message">{{ error }}</p>
