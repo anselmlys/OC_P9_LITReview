@@ -13,7 +13,7 @@
         </div>
         <div class="login-section">
             <h2>Connectez-vous</h2>
-            <p>{{ message }}</p>
+            <p class="error-message">{{ message }}</p>
             <form method="post">
                 {% csrf_token %}
                 {{ form.username }}
