@@ -4,24 +4,27 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=63,
-                               label='Nom d\'utilisateur',
-                               widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'}))
-    password = forms.CharField(max_length=63,
-                               label='Mot de passe',
-                               widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
+    username = forms.CharField(
+        max_length=63, label="Nom d'utilisateur", widget=forms.TextInput(attrs={"placeholder": "Nom d'utilisateur"})
+    )
+    password = forms.CharField(
+        max_length=63, label="Mot de passe", widget=forms.PasswordInput(attrs={"placeholder": "Mot de passe"})
+    )
+
 
 class SignupForm(UserCreationForm):
-    username = forms.CharField(max_length=63,
-                               label='Nom d\'utilisateur',
-                               widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'}))
-    password1 = forms.CharField(max_length=63,
-                                label='Mot de passe',
-                                widget=forms.TextInput(attrs={'placeholder': 'Mot de passe'}))
-    password2 = forms.CharField(max_length=63,
-                                label='Confirmer le mot de passe',
-                                widget=forms.TextInput(attrs={'placeholder': 'Confirmer le mot de passe'}))
-    
+    username = forms.CharField(
+        max_length=63, label="Nom d'utilisateur", widget=forms.TextInput(attrs={"placeholder": "Nom d'utilisateur"})
+    )
+    password1 = forms.CharField(
+        max_length=63, label="Mot de passe", widget=forms.TextInput(attrs={"placeholder": "Mot de passe"})
+    )
+    password2 = forms.CharField(
+        max_length=63,
+        label="Confirmer le mot de passe",
+        widget=forms.TextInput(attrs={"placeholder": "Confirmer le mot de passe"}),
+    )
+
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ['username', 'password1', 'password2']
+        fields = ["username", "password1", "password2"]

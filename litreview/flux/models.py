@@ -13,10 +13,7 @@ class Ticket(models.Model):
 
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
-    rating = models.fields.PositiveSmallIntegerField(validators=[
-                                                         MinValueValidator(0),
-                                                         MaxValueValidator(5)
-                                                     ])
+    rating = models.fields.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     headline = models.fields.CharField(max_length=128)
     body = models.fields.TextField(max_length=8192, blank=True)
@@ -24,12 +21,11 @@ class Review(models.Model):
 
 
 class UserFollows(models.Model):
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL,
-                                on_delete=models.CASCADE,
-                                related_name='following')
-    followed_user = models.ForeignKey(to=settings.AUTH_USER_MODEL,
-                                        on_delete=models.CASCADE,
-                                        related_name='followed_by')
-    
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following")
+
+    followed_user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="followed_by"
+    )
+
     class Meta:
-        unique_together = ('user', 'followed_user')
+        unique_together = ("user", "followed_user")

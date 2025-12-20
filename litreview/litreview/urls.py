@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -23,20 +24,20 @@ import authentication.views
 import flux.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', authentication.views.login_page, name='login'),
-    path('signup/', authentication.views.signup_page, name='signup'),
-    path('home/', flux.views.home, name='home'),
-    path('logout/', authentication.views.logout_user, name='logout'),
-    path('subscriptions/', flux.views.subscriptions, name='subscriptions'),
-    path('posts/', flux.views.posts, name='posts'),
-    path('tickets/create/', flux.views.create_ticket, name='create_ticket'),
-    path('tickets/create-with-review/', flux.views.create_ticket_and_review, name='create-ticket-review'),
-    path('tickets/<int:ticket_id>/modify/', flux.views.modify_ticket, name='modify_ticket'),
-    path('tickets/<int:ticket_id>/delete/', flux.views.delete_ticket, name='delete_ticket'),
-    path('tickets/<int:ticket_id>/create-review/', flux.views.create_review, name='create_review'),
-    path('tickets/<int:ticket_id>/reviews/<int:review_id>/modify/', flux.views.modify_review, name='modify_review'),
-    path('tickets/<int:ticket_id>/reviews/<int:review_id>/delete/', flux.views.delete_review, name='delete_review'),
+    path("admin/", admin.site.urls),
+    path("login/", authentication.views.login_page, name="login"),
+    path("signup/", authentication.views.signup_page, name="signup"),
+    path("home/", flux.views.home, name="home"),
+    path("logout/", authentication.views.logout_user, name="logout"),
+    path("subscriptions/", flux.views.subscriptions, name="subscriptions"),
+    path("posts/", flux.views.posts, name="posts"),
+    path("tickets/create/", flux.views.create_ticket, name="create_ticket"),
+    path("tickets/create-with-review/", flux.views.create_ticket_and_review, name="create-ticket-review"),
+    path("tickets/<int:ticket_id>/modify/", flux.views.modify_ticket, name="modify_ticket"),
+    path("tickets/<int:ticket_id>/delete/", flux.views.delete_ticket, name="delete_ticket"),
+    path("tickets/<int:ticket_id>/create-review/", flux.views.create_review, name="create_review"),
+    path("tickets/<int:ticket_id>/reviews/<int:review_id>/modify/", flux.views.modify_review, name="modify_review"),
+    path("tickets/<int:ticket_id>/reviews/<int:review_id>/delete/", flux.views.delete_review, name="delete_review"),
 ]
 
 if settings.DEBUG:
