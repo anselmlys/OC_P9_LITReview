@@ -7,7 +7,7 @@
 .review-section {
     display: flex;
     flex-direction: column;
-    border: 3px solid white;
+    border: 3px solid var(--lightest-color);
     padding: 10px;
     width: 90%;
     margin: auto;
@@ -52,14 +52,14 @@
 h4 {
     font-weight: 600;
     font-size: 15px;
-    color: #A18B7D;
+    color: var(--medium-dark-color);
 }
 
 .review-ticket-info {
-    background-color: #CCC2B8;
+    background-color: var(--medium-light-color);
     display: flex;
     flex-direction: column;
-    border: 3px solid #A18B7D;
+    border: 3px solid var(--medium-dark-color);
     padding: 10px 10px;
     gap: 10px;
 }

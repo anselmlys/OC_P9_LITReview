@@ -1,18 +1,26 @@
+:root {
+    --darkest-color: #2A282A;
+    --medium-dark-color: #A18B7D;
+    --medium-light-color: #CCC2B8;
+    --background-color: #EBEAEB;
+    --lightest-color: white;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    color: #2A282A;
+    color: var(--darkest-color);
     text-decoration: none;
 }
 
 body {
-    background-color: #EBEAEB;
+    background-color: var(--background-color);
 }
 
 .nav-bar {
     display: flex;
-    background-color: #A18B7D;
+    background-color: var(--medium-dark-color);
     height: 100px;
     width: 100%;
     justify-content: center;
@@ -46,8 +54,8 @@ h1 {
 }
 
 .tabs a:hover {
-    background-color: #CCC2B8;
-    color: #2A282A;
+    background-color: var(--medium-light-color);
+    color: var(--darkest-color);
     height: 100%;
 }
 
@@ -58,8 +66,8 @@ h2 {
 
 .default-button {
     box-sizing: border-box;
-    background-color: #CCC2B8;
-    border: 1px solid #A18B7D;
+    background-color: var(--medium-light-color);
+    border: 1px solid var(--medium-dark-color);
     border-radius: 0.5em;
     width: 150px;
     height: 40px;
@@ -73,15 +81,15 @@ h2 {
 }
 
 .default-button:hover {
-    background-color: #A18B7D;
+    background-color: var(--medium-dark-color);
     color: white;
     cursor: pointer;
 }
 
 .default-button:active {
-    background-color: #CCC2B8;
-    color: #2A282A;
-    box-shadow: 2px 2px 5px #A18B7D;
+    background-color: var(--medium-light-color);
+    color: var(--darkest-color);
+    box-shadow: 2px 2px 5px var(--medium-dark-color);
 }
 
 .error-message {

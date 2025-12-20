@@ -8,15 +8,15 @@
 .ticket-section {
     display: flex;
     flex-direction: column;
-    border: 3px solid white;
+    border: 3px solid var(--lightest-color);
     padding: 10px 10px;
 }
 
 .ticket-details {
-    background-color: #CCC2B8;
+    background-color: var(--medium-light-color);
     display: flex;
     flex-direction: column;
-    border: 3px solid #A18B7D;
+    border: 3px solid var(--medium-dark-color);
     padding: 10px 10px;
     margin: 15px 5px 0;
     gap: 10px;
@@ -34,14 +34,14 @@
     height: auto;
     width: auto;
     object-fit: contain;
-    border: 1px solid #A18B7D;
+    border: 1px solid var(--medium-dark-color);
     align-self: center;
 }
 
 .review-section {
     display: flex;
     flex-direction: column;
-    border: 3px solid white;
+    border: 3px solid var(--lightest-color);
     padding: 10px 10px;
     gap: 10px;
     margin-bottom: 2em;

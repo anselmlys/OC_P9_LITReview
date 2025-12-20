@@ -51,7 +51,7 @@
 
 .subscriptions-section ul {
     list-style: none;
-    border: 3px solid white;
+    border: 3px solid var(--lightest-color);
     width: 90%;
 }
 
@@ -65,13 +65,13 @@
 }
 
 .subscriptions-section li:not(:last-child) {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--lightest-color);
 }
 
 .subscriptions-section li:not(button) {
     font-size: 17px;
     font-weight: bold;
-    color: #A18B7D;
+    color: var(--medium-dark-color);
 }
 
 .followed-user-section button {
