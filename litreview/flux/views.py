@@ -8,25 +8,24 @@ from . import models
 
 @login_required
 def home(request):
+    # Retrieve logged-in user
     user = request.user
 
-    followed_user_pairs = models.UserFollows.objects.filter(user=user)
-    followed_users = []
-    for followed_user_pair in followed_user_pairs:
-        followed_users.append(followed_user_pair.followed_user)
-
-    followed_by_pairs = models.UserFollows.objects.filter(followed_user=user)
-    followed_by_users = []
-    for followed_by_pair in followed_by_pairs:
-        followed_by_users.append(followed_by_pair.user)
+    # Get ids of users followed by logged-in user
+    followed_user_ids = models.UserFollows.objects.filter(
+        user=user
+    ).values_list("followed_user_id", flat=True)
 
     posts = []
 
-    tickets = models.Ticket.objects.filter(Q(user=user) | Q(user__in=followed_users))
+    # Retrieve tickets and reviews written by logged-in user and by followed users
+    # Retrieve also all reviews in response to logged-in user tickets
+    tickets = models.Ticket.objects.filter(Q(user=user) | Q(user__in=followed_user_ids))
     reviews = models.Review.objects.filter(
-        Q(user=user) | Q(user__in=followed_users) | Q(user__in=followed_by_users, ticket__user=user)
-    )
+        Q(user=user) | Q(user__in=followed_user_ids) | Q(ticket__user=user)
+    ).distinct()
 
+    # Add type to distinguish tickets and reviews then append all to posts
     for ticket in tickets:
         ticket.type = "ticket"
         posts.append(ticket)
@@ -35,8 +34,10 @@ def home(request):
         review.type = "review"
         posts.append(review)
 
+    # Sort posts by antechronological order
     posts = sorted(posts, key=lambda post: post.time_created, reverse=True)
 
+    # Retrieve ids of all tickets already reviewed by logged-in user to avoid reviewing tickets twice
     reviewed_tickets_id = models.Review.objects.filter(user=user).values_list("ticket_id", flat=True)
 
     star_range = range(1, 6)
