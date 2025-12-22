@@ -45,23 +45,40 @@ source env/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-
-4. Setup database (SQLite3):
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-5. Run the development server:
+  
+> Note: A pre-populated SQLite database is included for demonstration purposes.
+Running migrations is not required.
+  
+4. Run the development server:
 ```bash
 python manage.py runserver
 ```
 
-6. Website will be available at:
+5. Website will be available at:  
 http://127.0.0.1:8000/
 
+## Demo accounts
+
+This repository includes a pre-populated SQLite database (`db.sqlite3`) with demo users so the application can be tested immediately.
+
+### Login
+All demo users share the same password:
+
+- Password: `S3cret!!`
+
+Example usernames:
+- `JaneDoe`
+- `JoneDoe`
+- `Unknown`
+
+### Admin
+- username: `admin`
+- password: `S3cret!!`
+
+> Note: These credentials are provided for evaluation/demo purposes only.
+
 ## Layout
-The layout of this website is based on the following wireframe provided by OpenClassrooms:
+The layout of this website is based on the following wireframe provided by OpenClassrooms:  
 https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Python%20FR/P7%20-%20D%C3%A9veloppez%20une%20application%20Web%20en%20utilisant%20Django/LITReview%20-%20Wireframes%20-%20FR.html
 
 ## Dependencies
