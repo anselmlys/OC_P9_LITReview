@@ -16,12 +16,16 @@
             <p class="error-message">{{ message }}</p>
             <form method="post">
                 {% csrf_token %}
+
+                <!-- Add invisible labels for screen readers -->
                 <label
                     class="accessible-labels"
                     for="{{ form.username.id_for_label }}">
                         {{ form.username.label }}
                 </label>
                 {{ form.username }}
+
+                <!-- Add invisible labels for screen readers -->
                 <label
                     class="accessible-labels"
                     for="{{ form.password.id_for_label }}">

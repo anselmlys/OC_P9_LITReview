@@ -11,6 +11,7 @@
         <form method="post">
             {% csrf_token %}
 
+            <!-- Add invisible labels for screen readers -->
             <label
                 class="accessible-labels"
                 for="{{ form.username.id_for_label }}">
@@ -21,6 +22,7 @@
                 <p class="error-message">{{ error }}</p>
             {% endfor %}
 
+            <!-- Add invisible labels for screen readers -->
             <label
                 class="accessible-labels"
                 for="{{ form.password1.id_for_label }}">
@@ -31,6 +33,7 @@
                 <p class="error-message">{{ error }}</p>
             {% endfor %}
 
+            <!-- Add invisible labels for screen readers -->
             <label
                 class="accessible-labels"
                 for="{{ form.password2.id_for_label }}">

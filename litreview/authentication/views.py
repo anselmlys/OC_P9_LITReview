@@ -21,6 +21,7 @@ def login_page(request):
     if request.method == "POST":
         form = forms.LoginForm(request.POST)
         if form.is_valid():
+            # Verify that the user already exists.
             user = authenticate(
                 username=form.cleaned_data["username"],
                 password=form.cleaned_data["password"],

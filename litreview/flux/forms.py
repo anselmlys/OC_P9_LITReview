@@ -21,6 +21,7 @@ class TicketForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Remove the ":" after the labels automatically added by Django
         self.label_suffix = ""
 
 
@@ -59,6 +60,7 @@ class ReviewForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Remove the ":" after the labels automatically added by Django
         self.label_suffix = ""
 
 
@@ -85,8 +87,10 @@ class UserSubscriptionForm(forms.ModelForm):
 
         try:
             user = User.objects.get(username=username)
+            # Prevent users to follow themselves
             if self.user == user:
                 raise forms.ValidationError("Vous ne pouvez pas vous ajouter vous-même.")
+            # Prevent users to follow someone they already follow
             if models.UserFollows.objects.filter(user=self.user, followed_user=user).exists():
                 raise forms.ValidationError("Vous suivez déjà cet utilisateur.")
         except User.DoesNotExist:
