@@ -49,7 +49,7 @@ pip install -r requirements.txt
 > Note: A pre-populated SQLite database is included for demonstration purposes.
 Running migrations is not required.
   
-4. Run the development server:
+4. Move into "litreview" folder and run the development server:
 ```bash
 python manage.py runserver
 ```
