@@ -8,6 +8,10 @@ from . import models
 
 @login_required
 def home(request):
+    '''
+    Display a feed of tickets and reviews from the user and followed users.
+    Also display reviews in response to tickets from logged-in user.
+    '''
     # Retrieve logged-in user
     user = request.user
 
@@ -51,6 +55,10 @@ def home(request):
 
 @login_required
 def subscriptions(request):
+    '''
+    Allow the user to manage their subscriptions to other users.
+    Also display who the user follow and who follow the user.
+    '''
     user_subscriptions = models.UserFollows.objects.filter(user=request.user)
     subscriptions_to_user = models.UserFollows.objects.filter(followed_user=request.user)
 
@@ -90,6 +98,7 @@ def subscriptions(request):
 
 @login_required
 def posts(request):
+    '''Display a feed containing the tickets and reviews of the user.'''
     user = request.user
 
     tickets = models.Ticket.objects.filter(user=user)
@@ -114,6 +123,7 @@ def posts(request):
 
 @login_required
 def create_ticket(request):
+    '''Allow the user to create a new ticket.'''
     form = forms.TicketForm()
     if request.method == "POST":
         form = forms.TicketForm(request.POST, request.FILES)
@@ -127,6 +137,7 @@ def create_ticket(request):
 
 @login_required
 def create_review(request, ticket_id):
+    '''Allow the user to create a new review.'''
     ticket = models.Ticket.objects.get(id=ticket_id)
     form = forms.ReviewForm()
 
@@ -148,6 +159,7 @@ def create_review(request, ticket_id):
 
 @login_required
 def create_ticket_and_review(request):
+    '''Allow the user to create a new ticket and a new review.'''
     ticket_form = forms.TicketForm()
     review_form = forms.ReviewForm()
 
@@ -171,6 +183,7 @@ def create_ticket_and_review(request):
 
 @login_required
 def modify_ticket(request, ticket_id):
+    '''Allow the user to modify a ticket.'''
     ticket = get_object_or_404(models.Ticket, pk=ticket_id, user=request.user)
 
     if request.method == "POST":
@@ -186,6 +199,7 @@ def modify_ticket(request, ticket_id):
 
 @login_required
 def modify_review(request, ticket_id, review_id):
+    '''Allow the user to modify a review.'''
     review = get_object_or_404(models.Review, pk=review_id, user=request.user)
     ticket = models.Ticket.objects.get(id=ticket_id)
 
@@ -206,6 +220,7 @@ def modify_review(request, ticket_id, review_id):
 
 @login_required
 def delete_ticket(request, ticket_id):
+    '''Allow the user to delete a ticket.'''
     ticket = get_object_or_404(models.Ticket, pk=ticket_id, user=request.user)
 
     if request.method == "POST":
@@ -217,6 +232,7 @@ def delete_ticket(request, ticket_id):
 
 @login_required
 def delete_review(request, ticket_id, review_id):
+    '''Allow the user to delete a review.'''
     review = get_object_or_404(models.Review, pk=review_id, user=request.user)
     ticket_id = models.Ticket.objects.get(id=ticket_id)
 

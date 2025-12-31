@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
+    '''Form used to authenticate a user with username and password.'''
     username = forms.CharField(
         max_length=63, label="Nom d'utilisateur", widget=forms.TextInput(attrs={"placeholder": "Nom d'utilisateur"})
     )
@@ -13,6 +14,7 @@ class LoginForm(forms.Form):
 
 
 class SignupForm(UserCreationForm):
+    '''Form used to register a new user.'''
     username = forms.CharField(
         max_length=63, label="Nom d'utilisateur", widget=forms.TextInput(attrs={"placeholder": "Nom d'utilisateur"})
     )

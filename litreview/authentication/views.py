@@ -5,6 +5,7 @@ from . import forms
 
 
 def signup_page(request):
+    '''Allow a user to create a new account.'''
     form = forms.SignupForm()
     if request.method == "POST":
         form = forms.SignupForm(request.POST)
@@ -16,6 +17,7 @@ def signup_page(request):
 
 
 def login_page(request):
+    '''Allow a user to log in.'''
     form = forms.LoginForm()
     message = ""
     if request.method == "POST":
@@ -35,5 +37,6 @@ def login_page(request):
 
 
 def logout_user(request):
+    '''Log out the currently authenticated user.'''
     logout(request)
     return redirect("login")

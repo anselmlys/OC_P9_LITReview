@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Ticket(models.Model):
+    '''Model representing a ticket created by a user.'''
     title = models.fields.CharField(max_length=128)
     description = models.fields.TextField(max_length=2048, blank=True)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -12,6 +13,7 @@ class Ticket(models.Model):
 
 
 class Review(models.Model):
+    '''Model representing a review created by a user in response to a ticket.'''
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.fields.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -21,6 +23,7 @@ class Review(models.Model):
 
 
 class UserFollows(models.Model):
+    '''Model representing a follow relationship between two users.'''
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following")
 
     followed_user = models.ForeignKey(

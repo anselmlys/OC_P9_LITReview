@@ -5,6 +5,7 @@ from . import models
 
 
 class TicketForm(forms.ModelForm):
+    '''Form used to create or update a ticket.'''
     title = forms.CharField(
         label="Titre",
         max_length=128,
@@ -26,6 +27,7 @@ class TicketForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    '''Form used to create or update a review.'''
     CHOICES = [
         (0, "0"),
         (1, "1"),
@@ -68,6 +70,10 @@ User = get_user_model()
 
 
 class UserSubscriptionForm(forms.ModelForm):
+    '''
+    Form used to follow another user by username.
+    Includes validation to prevent self-following and following a user twice.
+    '''
     subscribe = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     followed_user = forms.CharField(
@@ -83,6 +89,7 @@ class UserSubscriptionForm(forms.ModelForm):
         self.user = user
 
     def clean_followed_user(self):
+        '''Clean entered username and returns it if it is valid.'''
         username = self.cleaned_data["followed_user"].strip()
 
         try:
@@ -100,5 +107,6 @@ class UserSubscriptionForm(forms.ModelForm):
 
 
 class CancelUserSubscriptionForm(forms.Form):
+    '''Form used to cancel a subscription to another user.'''
     unsubscribe = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     subscription_id = forms.IntegerField(widget=forms.HiddenInput)
